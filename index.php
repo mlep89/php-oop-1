@@ -14,13 +14,23 @@
             public $cast;
             public $genre;
             public $year;
-            public $vote = 0;
+            private $vote = 0;
 
-            public function setVote($_vote){
+            public function __construct($_vote){
+                $this->vote = $_vote;
+                if ($_vote < 6){
+                    $this->vote = 'insufficiente';
+                }
+                else {
+                    $this->vote = 'sufficiente';
+                }
+            }
+
+            public function setVote($vote){
                 if ($vote < 6){
                     $this->vote = 'insufficiente';
                 }
-                if ($vote > 6){
+                else {
                     $this->vote = 'sufficiente';
                 }
             }
@@ -30,8 +40,9 @@
             }
         }
 
-        $Batman = new Movie();
-        $Batman-> setVote(7);
+        $Batman = new Movie(2);
+        //$Batman-> setVote(6);
+        $Batman-> language ="english";
         var_dump($Batman); 
 
     ?>
